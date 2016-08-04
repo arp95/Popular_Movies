@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">أفلام شعبية</string>
+    <string name="settings">إعدادات</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_user_settings">user_settings</string>
+    <string name="trailors">مقطورات</string>
+    <string name="reviews">استعراض</string>
+    <string name="movie_description">فيلم الوصف</string>
+    <string name="check_list">تحقق القائمة الكاملة</string>
+    <string name="review">1 تعليق</string>
+    <string name="trailor">العربات 1</string>
+    <string name="sort">ترتيب حسب :</string>
+    <string name="popularity">شعبية</string>
+    <string name="rated">أعلى التقييمات</string>
+    <string name="favorite">المفضلة</string>
+</resources>

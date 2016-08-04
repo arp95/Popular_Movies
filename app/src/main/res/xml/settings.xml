@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/sort">
+
+        <CheckBoxPreference
+            android:key="popularity"
+            android:title="@string/popularity"
+            android:defaultValue="false"/>
+
+        <CheckBoxPreference
+            android:key="vote_average"
+            android:title="@string/rated"
+            android:defaultValue="true"/>
+
+        <CheckBoxPreference
+            android:key="favorite"
+            android:title="@string/favorite"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
