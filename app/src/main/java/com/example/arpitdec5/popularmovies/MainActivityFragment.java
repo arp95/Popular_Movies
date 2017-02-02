@@ -7,8 +7,12 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,7 +35,11 @@ import java.util.ArrayList;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment{
+public class MainActivityFragment extends Fragment implements SearchView.OnQueryTextListener{
+
+    final private String SEARCH = "com.example.arpitdec5.searchText";
+    private String searchText = "";
+    private SearchView searchView;
 
     private OnMovieClickListener onMovieClickListener;
     Activity mActivity;
@@ -81,11 +89,56 @@ public class MainActivityFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         arrayList = new ArrayList<String>();
+        setHasOptionsMenu(true);
+
+        //checking the bundle to update search text
+        if(savedInstanceState!=null && savedInstanceState.getString(SEARCH)!=null){
+            searchText = savedInstanceState.getString(SEARCH);
+        }
+
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         requestQueue = Volley.newRequestQueue(mActivity);
         grid = (RecyclerView) rootView.findViewById(R.id.gri);
         movieDescriptionHandler = new com.example.arpitdec5.popularmovies.MovieDescriptionHandler(mActivity);
         return rootView;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(searchText!=null){
+            outState.putString(SEARCH, searchText);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.menu_main, menu);
+        searchView = (SearchView) menu.findItem(R.id.search_movie).getActionView();
+        searchView.setOnQueryTextListener(this);
+        if(searchText!=null){
+            searchView.setQuery(searchText, false);
+        }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        searchView.clearFocus();
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 
     @Override

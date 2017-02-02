@@ -6,18 +6,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +36,7 @@ import java.util.ArrayList;
 public class MovieDescriptionFragment extends Fragment {
 
     TextView title ,release,vote_average, overview , first_trailor , first_review;
-    ImageView imageView , imageView_play_button , imageview_reading;
+    ImageView image_background,imageView , imageView_play_button , imageview_reading;
     Activity mActivity;
     Button trailer_list;
     Button review_list;
@@ -102,7 +97,7 @@ public class MovieDescriptionFragment extends Fragment {
         trailer_list = (Button) rootView.findViewById(R.id.rev);
         review_list = (Button) rootView.findViewById(R.id.tra);
         favorite = (Button) rootView.findViewById(R.id.favorite);
-
+        image_background = (ImageView) rootView.findViewById(R.id.background);
 
         setDescription(movie_title);
         MovieApiCaller(url1 + movie_id + url3, 1);
@@ -186,6 +181,13 @@ public class MovieDescriptionFragment extends Fragment {
                 .error(R.drawable.image4)
                 .resize(350, 350)
                 .into(imageView);
+
+        Picasso.with(mActivity)
+                .load("http://image.tmdb.org/t/p/w185/" + movie_image)
+                .placeholder(R.drawable.image4)
+                .error(R.drawable.image4)
+                .resize(350, 350)
+                .into(image_background);
 
         Picasso.with(mActivity)
                 .load(R.drawable.play)
