@@ -1,36 +1,17 @@
 package com.example.arpitdec5.popularmovies;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.arpitdec5.popularmovies.MovieDescriptionHandler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class MovieDescription extends AppCompatActivity {
 
-    MovieDescriptionHandler movieDescriptionHandler;
+    com.example.arpitdec5.popularmovies.MovieDescriptionHandler movieDescriptionHandler;
     String movie_title = null;
     TrailorHandler trailorHandler;
 
@@ -62,10 +43,9 @@ public class MovieDescription extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        // Inflate the menu; this adds items to the action bar if it is present.
+    public boolean onPrepareOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main2, menu);
-        return true;
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
