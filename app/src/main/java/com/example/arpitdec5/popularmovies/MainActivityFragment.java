@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -47,6 +48,7 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
     RecyclerView grid;
     String[] images;
     ArrayList<String> arrayList;
+    ArrayList<String> titeList;
     RequestQueue requestQueue;
     JsonObjectRequest jsonObjectRequest1;
     JsonObjectRequest jsonObjectRequest2;
@@ -89,6 +91,7 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         arrayList = new ArrayList<String>();
+        titeList = new ArrayList<String>();
         setHasOptionsMenu(true);
 
         //checking the bundle to update search text
@@ -138,6 +141,29 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
 
     @Override
     public boolean onQueryTextChange(String newText) {
+
+        newText = newText.toLowerCase(Locale.getDefault());
+        ArrayList<String> modifiedList = new ArrayList<String>();
+        for(int i=0;i<arrayList.size();i++){
+
+            String text = titeList.get(i);
+            text = text.toLowerCase(Locale.getDefault());
+            if(text.contains(newText))
+                modifiedList.add(arrayList.get(i));
+        }
+
+        //by default arranging the movies by popularity
+        DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
+        float width = displayMetrics.widthPixels / displayMetrics.density;
+        int spanCount = (int) (width/175.00);
+
+        grid.setHasFixedSize(true);
+        RecyclerView.LayoutManager linearLayoutManager = new GridLayoutManager(mActivity,spanCount);
+        grid.setLayoutManager(linearLayoutManager);
+        grid.setAdapter(new ListAdapterr(modifiedList, mActivity));
+        grid.scrollToPosition(0);
+
+        searchText = newText;
         return false;
     }
 
@@ -172,7 +198,9 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
                                     if (movieDescriptionHandler.present_title(str4 , str1))
                                         movieDescriptionHandler.insert(str6, str4, str1, str3, str5, str2, "0");
                                     arrayList.add(str1);
+                                    titeList.add(str4);
                                 }
+
                                 //by default arranging the movies by popularity
                                 DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
                                 float width = displayMetrics.widthPixels / displayMetrics.density;
@@ -202,6 +230,14 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
         } else if (sharedPreferences.getBoolean("favorite", false)) {
             //displays the favorite movies of the user
             arrayList = movieDescriptionHandler.get_favorites();
+
+            //getting the title from the string images
+            for(int i=0;i<arrayList.size();i++)
+            {
+                String title = movieDescriptionHandler.get_title(arrayList.get(i));
+                titeList.add(title);
+            }
+
             grid.setHasFixedSize(true);
             RecyclerView.LayoutManager linearLayoutManager = new GridLayoutManager(mActivity,2);
             grid.setLayoutManager(linearLayoutManager);
@@ -232,6 +268,7 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
                                     if (movieDescriptionHandler.present_title(str4 , str1))
                                         movieDescriptionHandler.insert(str6, str4, str1, str3, str5, str2, "0");
                                     arrayList.add(str1);
+                                    titeList.add(str4);
                                 }
                                 //by default arranging the movies by popularity
                                 DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
