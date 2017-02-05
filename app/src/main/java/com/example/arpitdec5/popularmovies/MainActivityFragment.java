@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,6 +42,7 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
     final private String SEARCH = "com.example.arpitdec5.searchText";
     private String searchText = "";
     private SearchView searchView;
+    private NavigationView navigationView;
 
     private OnMovieClickListener onMovieClickListener;
     Activity mActivity;
@@ -103,6 +105,7 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
         requestQueue = Volley.newRequestQueue(mActivity);
         grid = (RecyclerView) rootView.findViewById(R.id.gri);
         movieDescriptionHandler = new com.example.arpitdec5.popularmovies.MovieDescriptionHandler(mActivity);
+
         return rootView;
     }
 
@@ -168,12 +171,13 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mActivity);
         arrayList = new ArrayList<String>();
-        if (sharedPreferences.getBoolean("popularity", false)) {
+        String str = sharedPreferences.getString("value", "");
+        if (str.equals("0")) {
             // this is called if user wants to see the movies by popularity
             Toast.makeText(mActivity , "Loading..Please wait" , Toast.LENGTH_LONG).show();
 
@@ -227,7 +231,7 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
                     });
 
             requestQueue.add(jsonObjectRequest1);
-        } else if (sharedPreferences.getBoolean("favorite", false)) {
+        } else if (str.equals("2")) {
             //displays the favorite movies of the user
             arrayList = movieDescriptionHandler.get_favorites();
 

@@ -2,7 +2,10 @@ package com.example.arpitdec5.popularmovies;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements MainActivityFragment.OnMovieClickListener{
 
@@ -20,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private SmoothActionBarDrawerToggle smoothActionBarToggle;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,6 +35,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         if(toolbar!=null) {
             smoothActionBarToggle = new SmoothActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.openDrawer, R.string.closeDrawer);
@@ -39,6 +47,38 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
             actionBar.setDisplayHomeAsUpEnabled(true);
             smoothActionBarToggle.syncState();
         }
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+
+
+                int val=0;
+                switch (item.getItemId()){
+
+                    case R.id.popular:
+                        val=0;
+                        item.setChecked(true);
+                        break;
+
+                    case R.id.top_rated:
+                        val=1;
+                        item.setChecked(true);
+                        break;
+
+                    case R.id.fav:
+                        val=2;
+                        item.setChecked(true);
+                        break;
+                }
+                Toast.makeText(getApplicationContext(), "Item clicked", Toast.LENGTH_SHORT).show();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("value", val+"");
+                drawerLayout.closeDrawers();
+                return false;
+            }
+        });
+
 
         if(this.findViewById(R.id.movie_review_fragment)!=null)
         {
