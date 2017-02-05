@@ -1,4 +1,4 @@
-package com.example.arpitdec5.popularmovies;
+package com.example.arpitdec5.popularmovies.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,10 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements MainActivityFragment.OnMovieClickListener{
+import com.example.arpitdec5.popularmovies.R;
+import com.example.arpitdec5.popularmovies.utils.user_settings;
+
+public class MainActivity extends AppCompatActivity{
 
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
-    boolean two_pane = false;
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -53,63 +55,32 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
             public boolean onNavigationItemSelected(MenuItem item) {
 
 
-                int val=0;
+                String str="0";
                 switch (item.getItemId()){
 
                     case R.id.popular:
-                        val=0;
+                        str="0";
                         item.setChecked(true);
                         break;
 
                     case R.id.top_rated:
-                        val=1;
+                        str="1";
                         item.setChecked(true);
                         break;
 
                     case R.id.fav:
-                        val=2;
+                        str="2";
                         item.setChecked(true);
                         break;
                 }
                 Toast.makeText(getApplicationContext(), "Item clicked", Toast.LENGTH_SHORT).show();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("value", val+"");
+                editor.putString("value", str);
                 drawerLayout.closeDrawers();
                 return false;
             }
         });
 
-
-        if(this.findViewById(R.id.movie_review_fragment)!=null)
-        {
-            String movie_title = "Nothing Clicked";
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            MovieDescriptionFragment movieDescriptionFragment = new MovieDescriptionFragment(movie_title);
-            //movieDescriptionFragment.setHasOptionsMenu(true);
-            fragmentTransaction.add(R.id.movie_review_fragment , movieDescriptionFragment);
-            fragmentTransaction.commit();
-        }
-
-    }
-
-    @Override
-    public void selectMovie(String movie_title) {
-
-        if(findViewById(R.id.movie_review_fragment)!=null)
-        {
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            MovieDescriptionFragment movieDescriptionFragment = new MovieDescriptionFragment(movie_title);
-            fragmentTransaction.replace(R.id.movie_review_fragment , movieDescriptionFragment);
-            fragmentTransaction.commit();
-        }
-        else
-        {
-            Intent intent = new Intent(this , MovieDescription.class);
-            intent.putExtra("yolo" , movie_title);
-            startActivity(intent);
-        }
     }
 
     @Override

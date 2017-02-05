@@ -1,4 +1,4 @@
-package com.example.arpitdec5.popularmovies;
+package com.example.arpitdec5.popularmovies.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;

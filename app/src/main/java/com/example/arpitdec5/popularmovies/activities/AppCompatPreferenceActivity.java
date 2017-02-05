@@ -1,4 +1,4 @@
-package com.example.arpitdec5.popularmovies;
+package com.example.arpitdec5.popularmovies.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.example.arpitdec5.popularmovies;
+package com.example.arpitdec5.popularmovies.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.arpitdec5.popularmovies.R;
+import com.example.arpitdec5.popularmovies.data.MovieDescriptionHandler;
+import com.example.arpitdec5.popularmovies.data.TrailorHandler;
+
 import java.util.ArrayList;
 
 public class MovieDescription extends AppCompatActivity {
 
-    com.example.arpitdec5.popularmovies.MovieDescriptionHandler movieDescriptionHandler;
+    MovieDescriptionHandler movieDescriptionHandler;
     String movie_title = null;
     TrailorHandler trailorHandler;
 
@@ -28,18 +32,11 @@ public class MovieDescription extends AppCompatActivity {
                 finish();
             }
         });
-        trailorHandler = new com.example.arpitdec5.popularmovies.TrailorHandler(this);
+        trailorHandler = new TrailorHandler(this);
 
         Intent p = getIntent();
         Bundle m = p.getExtras();
-        movie_title = m.getString("yolo");
-        if(savedInstanceState==null){
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            MovieDescriptionFragment movieDescriptionFragment = new MovieDescriptionFragment(movie_title);
-            fragmentTransaction.replace(R.id.movie_review_fragment , movieDescriptionFragment);
-            fragmentTransaction.commit();
-        }
+        movie_title = m.getString("title");
     }
 
     @Override

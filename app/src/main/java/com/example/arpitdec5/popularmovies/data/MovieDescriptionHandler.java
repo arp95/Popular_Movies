@@ -1,4 +1,4 @@
-package com.example.arpitdec5.popularmovies;
+package com.example.arpitdec5.popularmovies.data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

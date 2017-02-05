@@ -1,8 +1,9 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movie_review_fragment"
-    android:name="com.example.arpitdec5.popularmovies.MovieDescription"
+    android:name="com.example.arpitdec5.popularmovies.fragments.MovieDescriptionFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:layout="@layout/moviedescription_fragment_main"/>

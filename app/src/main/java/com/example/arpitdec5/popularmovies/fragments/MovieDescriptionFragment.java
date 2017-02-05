@@ -1,4 +1,4 @@
-package com.example.arpitdec5.popularmovies;
+package com.example.arpitdec5.popularmovies.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.arpitdec5.popularmovies.R;
+import com.example.arpitdec5.popularmovies.activities.Reviews;
+import com.example.arpitdec5.popularmovies.data.TrailorHandler;
+import com.example.arpitdec5.popularmovies.activities.Trailors;
+import com.example.arpitdec5.popularmovies.data.MovieDescriptionHandler;
+import com.example.arpitdec5.popularmovies.data.ReviewHandler;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -57,8 +63,8 @@ public class MovieDescriptionFragment extends Fragment {
     String movie_review = null;
 
     TrailorHandler trailorHandler;
-    com.example.arpitdec5.popularmovies.ReviewHandler reviewHandler;
-    com.example.arpitdec5.popularmovies.MovieDescriptionHandler movieDescriptionHandler;
+    ReviewHandler reviewHandler;
+    MovieDescriptionHandler movieDescriptionHandler;
 
     @Override
     public void onAttach(Activity activity) {
@@ -70,10 +76,6 @@ public class MovieDescriptionFragment extends Fragment {
 
     }
 
-    public MovieDescriptionFragment(String str){
-        movie_title = str;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -82,9 +84,9 @@ public class MovieDescriptionFragment extends Fragment {
         trailer = new ArrayList<String>();
         review = new ArrayList<String>();
 
-        movieDescriptionHandler = new com.example.arpitdec5.popularmovies.MovieDescriptionHandler(mActivity);
-        trailorHandler = new com.example.arpitdec5.popularmovies.TrailorHandler(mActivity);
-        reviewHandler = new com.example.arpitdec5.popularmovies.ReviewHandler(mActivity);
+        movieDescriptionHandler = new MovieDescriptionHandler(mActivity);
+        trailorHandler = new TrailorHandler(mActivity);
+        reviewHandler = new ReviewHandler(mActivity);
         title = (TextView) rootView.findViewById(R.id.e1);
         imageView = (ImageView) rootView.findViewById(R.id.e2);
         release = (TextView) rootView.findViewById(R.id.e3);
@@ -98,6 +100,10 @@ public class MovieDescriptionFragment extends Fragment {
         review_list = (Button) rootView.findViewById(R.id.tra);
         favorite = (Button) rootView.findViewById(R.id.favorite);
         image_background = (ImageView) rootView.findViewById(R.id.background);
+
+        Intent intent = mActivity.getIntent();
+        movie_title = intent.getStringExtra("title");
+        Toast.makeText(getContext(), "Movie is " + movie_title, Toast.LENGTH_LONG).show();
 
         setDescription(movie_title);
         MovieApiCaller(url1 + movie_id + url3, 1);

@@ -1,9 +1,5 @@
-package com.example.arpitdec5.popularmovies;
-import android.content.ClipData;
-import android.content.Context;
+package com.example.arpitdec5.popularmovies.utils;
 import android.graphics.Rect;
-import android.support.annotation.DimenRes;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 

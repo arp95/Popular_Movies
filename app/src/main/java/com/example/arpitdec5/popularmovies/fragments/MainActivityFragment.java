@@ -1,6 +1,6 @@
-package com.example.arpitdec5.popularmovies;
+package com.example.arpitdec5.popularmovies.fragments;
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -25,6 +25,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.arpitdec5.popularmovies.activities.MovieDescription;
+import com.example.arpitdec5.popularmovies.R;
+import com.example.arpitdec5.popularmovies.data.MovieDescriptionHandler;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -44,9 +47,8 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
     private SearchView searchView;
     private NavigationView navigationView;
 
-    private OnMovieClickListener onMovieClickListener;
     Activity mActivity;
-    com.example.arpitdec5.popularmovies.MovieDescriptionHandler movieDescriptionHandler;
+    MovieDescriptionHandler movieDescriptionHandler;
     RecyclerView grid;
     String[] images;
     ArrayList<String> arrayList;
@@ -72,24 +74,6 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnMovieClickListener) {
-            onMovieClickListener = (OnMovieClickListener) context;
-        } else
-        {
-            throw new ClassCastException(context.toString()
-                    + " must implemenet MyListFragment.OnItemSelectedListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        onMovieClickListener = null;
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         arrayList = new ArrayList<String>();
@@ -104,7 +88,7 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         requestQueue = Volley.newRequestQueue(mActivity);
         grid = (RecyclerView) rootView.findViewById(R.id.gri);
-        movieDescriptionHandler = new com.example.arpitdec5.popularmovies.MovieDescriptionHandler(mActivity);
+        movieDescriptionHandler = new MovieDescriptionHandler(mActivity);
 
         return rootView;
     }
@@ -129,6 +113,8 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
         inflater.inflate(R.menu.menu_main, menu);
+
+        //setting search items
         searchView = (SearchView) menu.findItem(R.id.search_movie).getActionView();
         searchView.setOnQueryTextListener(this);
         if(searchText!=null){
@@ -176,7 +162,10 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mActivity);
         arrayList = new ArrayList<String>();
-        String str = sharedPreferences.getString("value", "");
+        String str="0";
+        str = sharedPreferences.getString("value", "");
+        str = "0";
+        Toast.makeText(getContext(), "Value is " + str, Toast.LENGTH_SHORT).show();
         if (str.equals("0")) {
             // this is called if user wants to see the movies by popularity
             Toast.makeText(mActivity , "Loading..Please wait" , Toast.LENGTH_LONG).show();
@@ -214,7 +203,7 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
                                 RecyclerView.LayoutManager linearLayoutManager = new GridLayoutManager(mActivity,spanCount);
                                 grid.setLayoutManager(linearLayoutManager);
                                 grid.setAdapter(new ListAdapterr(arrayList, mActivity));
-                                //grid.addItemDecoration(new com.example.arpitdec5.popularmovies.DividerItemDecoration(mActivity, LinearLayoutManager.VERTICAL));
+                                //grid.addItemDecoration(new com.example.arpitdec5.popularmovies.utils.DividerItemDecoration(mActivity, LinearLayoutManager.VERTICAL));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -283,7 +272,7 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
                                 RecyclerView.LayoutManager linearLayoutManager = new GridLayoutManager(mActivity,spanCount);
                                 grid.setLayoutManager(linearLayoutManager);
                                 grid.setAdapter(new ListAdapterr(arrayList, mActivity));
-                                //grid.addItemDecoration(new com.example.arpitdec5.popularmovies.DividerItemDecoration(mActivity, LinearLayoutManager.VERTICAL));
+                                //grid.addItemDecoration(new com.example.arpitdec5.popularmovies.utils.DividerItemDecoration(mActivity, LinearLayoutManager.VERTICAL));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -368,7 +357,9 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
                 @Override
                 public void onClick(View v) {
 
-                    onMovieClickListener.selectMovie(movie_title);
+                    Intent intent = new Intent(getContext(), MovieDescription.class);
+                    intent.putExtra("title", movie_title);
+                    startActivity(intent);
                 }
             });
         }
