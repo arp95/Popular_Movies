@@ -17,6 +17,7 @@ depending on the option selected by the user in the settings menu.
   
   1. Picasso
   2. Volley
+  3. ButterKnife
   
 
 ### Contribution
