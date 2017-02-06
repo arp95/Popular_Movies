@@ -7,7 +7,7 @@
     tools:showIn="@layout/moviedescription_activity_main">
 
     <ImageView
-        android:id="@+id/background"
+        android:id="@+id/desription_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"/>
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/e1"
+                        android:id="@+id/description_title"
                         android:textStyle="bold"
                         android:textSize="25dp"
                         android:textAlignment="center"
@@ -49,7 +49,7 @@
                             android:layout_height="wrap_content">
 
                             <ImageView
-                                android:id="@+id/e2"
+                                android:id="@+id/description_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
 
@@ -59,21 +59,21 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:id="@+id/e3"
+                                    android:id="@+id/description_release"
                                     android:textStyle="bold"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="90dp"/>
 
                                 <TextView
-                                    android:id="@+id/e4"
+                                    android:id="@+id/description_vote"
                                     android:textStyle="bold"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="90dp"/>
 
                                 <Button
-                                    android:id="@+id/favorite"
+                                    android:id="@+id/description_fav"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Mark as Favorite"
@@ -85,7 +85,7 @@
                         </LinearLayout>
 
                     <TextView
-                        android:id="@+id/e5"
+                        android:id="@+id/description_overview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"/>
@@ -116,12 +116,12 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/e7"
+                        android:id="@+id/description_play"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/e6"
+                        android:id="@+id/description_trailor"
                         android:layout_marginLeft="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
 
                 <Button
                     android:layout_marginBottom="10dp"
-                    android:id="@+id/rev"
+                    android:id="@+id/description_trailor_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/check_list"
@@ -170,12 +170,12 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/reading"
+                        android:id="@+id/description_reading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/e8"
+                        android:id="@+id/description_review"
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -188,7 +188,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/tra"
+                    android:id="@+id/description_review_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/check_list"

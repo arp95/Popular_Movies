@@ -18,10 +18,10 @@ import android.widget.Toast;
 
 import com.example.arpitdec5.popularmovies.R;
 import com.example.arpitdec5.popularmovies.activities.Reviews;
-import com.example.arpitdec5.popularmovies.data.TrailorHandler;
 import com.example.arpitdec5.popularmovies.activities.Trailors;
 import com.example.arpitdec5.popularmovies.data.MovieDescriptionHandler;
 import com.example.arpitdec5.popularmovies.data.ReviewHandler;
+import com.example.arpitdec5.popularmovies.data.TrailorHandler;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -36,19 +36,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MovieDescriptionFragment extends Fragment {
 
-    TextView title ,release,vote_average, overview , first_trailor , first_review;
-    ImageView image_background,imageView , imageView_play_button , imageview_reading;
     Activity mActivity;
-    Button trailer_list;
-    Button review_list;
-    Button favorite;
     ArrayList<String> trailer ;
     ArrayList<String> review;
+
+    private Unbinder unbinder;
 
     String movie_id = "sdsds";
     String movie_title = "sdsdsdsd";
@@ -76,10 +77,43 @@ public class MovieDescriptionFragment extends Fragment {
 
     }
 
+    @BindView(R.id.description_title) TextView title;
+    @BindView(R.id.description_release) TextView release;
+    @BindView(R.id.description_vote) TextView vote_average;
+    @BindView(R.id.description_overview) TextView overview;
+    @BindView(R.id.description_trailor) TextView first_trailor;
+    @BindView(R.id.description_review) TextView first_review;
+    @BindView(R.id.description_image) ImageView imageView;
+    @BindView(R.id.description_reading) ImageView imageview_reading;
+    @BindView(R.id.description_play) ImageView imageView_play_button;
+    @BindView(R.id.desription_background) ImageView image_background;
+    @BindView(R.id.description_trailor_button) Button trailer_list;
+    @BindView(R.id.description_review_button) Button review_list;
+    @BindView(R.id.description_fav) Button favorite;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        ButterKnife.setDebug(true);
         View rootView =  inflater.inflate(R.layout.moviedescription_fragment_main, container, false);
+
+        unbinder = ButterKnife.bind(this, rootView);
+        //title = (TextView) rootView.findViewById(R.id.e1);
+        //release = (TextView) rootView.findViewById(R.id.e3);
+        //vote_average = (TextView) rootView.findViewById(R.id.e4);
+        //overview = (TextView) rootView.findViewById(R.id.e5);
+        //first_trailor = (TextView) rootView.findViewById(R.id.e6);
+        //first_review = (TextView) rootView.findViewById(R.id.e8);
+
+        //imageView = (ImageView) rootView.findViewById(R.id.e2);
+        //imageView_play_button = (ImageView) rootView.findViewById(R.id.e7);
+        //imageview_reading = (ImageView) rootView.findViewById(R.id.reading);
+        //image_background = (ImageView) rootView.findViewById(R.id.background);
+
+        //trailer_list = (Button) rootView.findViewById(R.id.rev);
+        //review_list = (Button) rootView.findViewById(R.id.tra);
+        //favorite = (Button) rootView.findViewById(R.id.favorite);
 
         trailer = new ArrayList<String>();
         review = new ArrayList<String>();
@@ -87,19 +121,6 @@ public class MovieDescriptionFragment extends Fragment {
         movieDescriptionHandler = new MovieDescriptionHandler(mActivity);
         trailorHandler = new TrailorHandler(mActivity);
         reviewHandler = new ReviewHandler(mActivity);
-        title = (TextView) rootView.findViewById(R.id.e1);
-        imageView = (ImageView) rootView.findViewById(R.id.e2);
-        release = (TextView) rootView.findViewById(R.id.e3);
-        vote_average = (TextView) rootView.findViewById(R.id.e4);
-        overview = (TextView) rootView.findViewById(R.id.e5);
-        first_trailor = (TextView) rootView.findViewById(R.id.e6);
-        imageView_play_button = (ImageView) rootView.findViewById(R.id.e7);
-        imageview_reading = (ImageView) rootView.findViewById(R.id.reading);
-        first_review = (TextView) rootView.findViewById(R.id.e8);
-        trailer_list = (Button) rootView.findViewById(R.id.rev);
-        review_list = (Button) rootView.findViewById(R.id.tra);
-        favorite = (Button) rootView.findViewById(R.id.favorite);
-        image_background = (ImageView) rootView.findViewById(R.id.background);
 
         Intent intent = mActivity.getIntent();
         movie_title = intent.getStringExtra("title");
@@ -166,6 +187,12 @@ public class MovieDescriptionFragment extends Fragment {
             }
         });
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     public void setDescription(String string)

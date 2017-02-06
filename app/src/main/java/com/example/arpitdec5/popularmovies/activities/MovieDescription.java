@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.arpitdec5.popularmovies.R;
 import com.example.arpitdec5.popularmovies.data.MovieDescriptionHandler;
@@ -13,25 +12,36 @@ import com.example.arpitdec5.popularmovies.data.TrailorHandler;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MovieDescription extends AppCompatActivity {
 
     MovieDescriptionHandler movieDescriptionHandler;
     String movie_title = null;
     TrailorHandler trailorHandler;
 
+    @BindView(R.id.toolbar) Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        ButterKnife.setDebug(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.moviedescription_activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
+        //setting support for toolbar as actionBar
         setSupportActionBar(toolbar);
+
+        /*
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+        */
         trailorHandler = new TrailorHandler(this);
 
         Intent p = getIntent();

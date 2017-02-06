@@ -8,15 +8,25 @@ import android.widget.Toast;
 
 import com.example.arpitdec5.popularmovies.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class Reviews extends AppCompatActivity {
+
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        ButterKnife.setDebug(true);
         super.onCreate(savedInstanceState);
         Toast.makeText(this , "Rendering Reviews .." , Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_reviews);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+
+        //set support for toolbar
         setSupportActionBar(toolbar);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -21,6 +21,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -29,9 +32,10 @@ public class TrailorsFragment extends Fragment {
     Activity mActivity;
     ArrayList<String> trailors;
     TrailorHandler trailorHandler;
-    RecyclerView listView;
     ImageView imageView;
     TextView textView;
+
+    @BindView(R.id.list_trailor) RecyclerView listView;
 
     public TrailorsFragment() {
     }
@@ -44,8 +48,10 @@ public class TrailorsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView =  inflater.inflate(R.layout.fragment_trailors, container, false);
 
+        ButterKnife.setDebug(true);
+        View rootView =  inflater.inflate(R.layout.fragment_trailors, container, false);
+        ButterKnife.bind(this, rootView);
         trailors = new ArrayList<String>();
         trailorHandler = new TrailorHandler(mActivity);
 
@@ -54,7 +60,6 @@ public class TrailorsFragment extends Fragment {
         String title = bundle.getString("yolo");
 
         trailors = trailorHandler.get_trailor_link(title);
-        listView = (RecyclerView) rootView.findViewById(R.id.list_trailor);
         listView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mActivity);
         listView.setLayoutManager(layoutManager);

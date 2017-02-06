@@ -19,28 +19,31 @@ import android.widget.Toast;
 import com.example.arpitdec5.popularmovies.R;
 import com.example.arpitdec5.popularmovies.utils.user_settings;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity{
 
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
 
-    private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.drawer) DrawerLayout drawerLayout;
+    @BindView(R.id.nav_view) NavigationView navigationView;
+
     private SmoothActionBarDrawerToggle smoothActionBarToggle;
-    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        ButterKnife.setDebug(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
+        //set support for toolbar
         setSupportActionBar(toolbar);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         if(toolbar!=null) {
             smoothActionBarToggle = new SmoothActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.openDrawer, R.string.closeDrawer);
             ActionBar actionBar = getSupportActionBar();

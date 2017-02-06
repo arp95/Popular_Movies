@@ -21,16 +21,20 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * A placeholder fragment containing a simple view.
  */
 public class ReviewsFragment extends Fragment {
 
     Activity mActivity;
-    RecyclerView listView;
     ReviewHandler reviewHandler;
     ArrayList<String> reviews ;
     TextView textView;
+
+    @BindView(R.id.review_list_review) RecyclerView listView;
 
     public ReviewsFragment() {
     }
@@ -45,7 +49,8 @@ public class ReviewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView =  inflater.inflate(R.layout.fragment_reviews, container, false);
-        listView = (RecyclerView) rootView.findViewById(R.id.review_list_review);
+        ButterKnife.setDebug(true);
+
         reviewHandler = new ReviewHandler(mActivity);
         reviews = new ArrayList<String>();
 
