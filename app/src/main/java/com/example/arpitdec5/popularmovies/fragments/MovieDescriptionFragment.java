@@ -97,23 +97,7 @@ public class MovieDescriptionFragment extends Fragment {
     {
         ButterKnife.setDebug(true);
         View rootView =  inflater.inflate(R.layout.moviedescription_fragment_main, container, false);
-
         unbinder = ButterKnife.bind(this, rootView);
-        //title = (TextView) rootView.findViewById(R.id.e1);
-        //release = (TextView) rootView.findViewById(R.id.e3);
-        //vote_average = (TextView) rootView.findViewById(R.id.e4);
-        //overview = (TextView) rootView.findViewById(R.id.e5);
-        //first_trailor = (TextView) rootView.findViewById(R.id.e6);
-        //first_review = (TextView) rootView.findViewById(R.id.e8);
-
-        //imageView = (ImageView) rootView.findViewById(R.id.e2);
-        //imageView_play_button = (ImageView) rootView.findViewById(R.id.e7);
-        //imageview_reading = (ImageView) rootView.findViewById(R.id.reading);
-        //image_background = (ImageView) rootView.findViewById(R.id.background);
-
-        //trailer_list = (Button) rootView.findViewById(R.id.rev);
-        //review_list = (Button) rootView.findViewById(R.id.tra);
-        //favorite = (Button) rootView.findViewById(R.id.favorite);
 
         trailer = new ArrayList<String>();
         review = new ArrayList<String>();
