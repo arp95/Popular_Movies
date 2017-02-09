@@ -6,4 +6,7 @@
     <dimen name="nav_header_height">192dp</dimen>
     <dimen name="text_height">25sp</dimen>
     <dimen name="bar_elev">4dp</dimen>
+    <dimen name="text_margin_bottom">10dp</dimen>
+    <dimen name="text_margin_left">20dp</dimen>
+    <dimen name="text_padding">10dp</dimen>
 </resources>

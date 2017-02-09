@@ -11,7 +11,7 @@
     tools:showIn="@layout/activity_reviews">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/text_margin_bottom"
         android:id="@+id/review_list_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
