@@ -17,9 +17,10 @@ import butterknife.ButterKnife;
 
 public class MovieDescription extends AppCompatActivity {
 
+    TrailorHandler trailorHandler;
     MovieDescriptionHandler movieDescriptionHandler;
     String movie_title = null;
-    TrailorHandler trailorHandler;
+    String url = "https://www.youtube.com/watch?v=";
 
     @BindView(R.id.toolbar) Toolbar toolbar;
 
@@ -71,7 +72,7 @@ public class MovieDescription extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_SUBJECT, "First_Trailor");
-            intent.putExtra(Intent.EXTRA_TEXT , "https://www.youtube.com/watch?v=" + arrayList.get(0));
+            intent.putExtra(Intent.EXTRA_TEXT , url + arrayList.get(0));
             startActivity(intent);
             return true;
         }

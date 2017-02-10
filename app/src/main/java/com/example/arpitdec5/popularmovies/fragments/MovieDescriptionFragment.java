@@ -51,18 +51,21 @@ public class MovieDescriptionFragment extends Fragment {
 
     private Unbinder unbinder;
 
-    String movie_id = "sdsds";
-    String movie_title = "sdsdsdsd";
-    String movie_image = "jjjjj" ;
-    String movie_release = "kkkkk" ;
-    String movie_vote = "kkkkk" ;
-    String movie_overview = "bbbbb" ;
+    String movie_id = "";
+    String movie_title = "";
+    String movie_image = "";
+    String movie_release = "";
+    String movie_vote = "";
+    String movie_overview = "";
     String url4 = "https://www.youtube.com/watch?v=";
     String url3 = "/videos?api_key=e9bedc7d4abd75b8283a9734f5bcb6d2";
     String url2 = "/reviews?api_key=e9bedc7d4abd75b8283a9734f5bcb6d2";
     String url1 = "http://api.themoviedb.org/3/movie/";
     String movie_review = null;
-
+    String toast_error = getString(R.string.error);
+    String no_review = getString(R.string.no_review);
+    String no_trailor = getString(R.string.no_trailor);
+    
     TrailorHandler trailorHandler;
     ReviewHandler reviewHandler;
     MovieDescriptionHandler movieDescriptionHandler;
@@ -154,7 +157,7 @@ public class MovieDescriptionFragment extends Fragment {
                     startActivity(intent);
                 }
                 else
-                    Toast.makeText(mActivity , "Sorry no reviews found !!" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity,  no_review, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -167,7 +170,7 @@ public class MovieDescriptionFragment extends Fragment {
                     startActivity(intent);
                 }
                 else
-                    Toast.makeText(mActivity , "Sorry no reviews found !!" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity, no_review, Toast.LENGTH_SHORT).show();
             }
         });
         return rootView;
@@ -247,7 +250,6 @@ public class MovieDescriptionFragment extends Fragment {
                 String sh = downloadUrl(params[0]);
                 return sh;
             } catch (IOException e) {
-                Toast.makeText(mActivity , "YO BABY" , Toast.LENGTH_LONG).show();
                 return "invalid!!";
             }
         }
@@ -278,7 +280,7 @@ public class MovieDescriptionFragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(mActivity , "Error while taking data!!"  ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity , toast_error,Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -360,7 +362,7 @@ public class MovieDescriptionFragment extends Fragment {
                                 startActivity(intent);
 
                             } else
-                                Toast.makeText(mActivity, "Sorry no Trailor available", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mActivity, no_trailor, Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -376,7 +378,7 @@ public class MovieDescriptionFragment extends Fragment {
                                 startActivity(intent);
 
                             } else
-                                Toast.makeText(mActivity, "Sorry no Trailor available", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mActivity, no_trailor, Toast.LENGTH_SHORT).show();
 
                         }
                     });
@@ -386,7 +388,7 @@ public class MovieDescriptionFragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(mActivity , "Error while taking data!!"  ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity , toast_error,Toast.LENGTH_SHORT).show();
                 }
 
             }

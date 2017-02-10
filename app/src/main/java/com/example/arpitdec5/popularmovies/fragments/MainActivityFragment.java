@@ -60,6 +60,7 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
     String url1 = "https://api.themoviedb.org/3/movie/";
     String url2 = "?api_key=e9bedc7d4abd75b8283a9734f5bcb6d2";
     String url3 = "http://image.tmdb.org/t/p/w185/";
+    String toast_error = getString(R.string.error);
 
     public interface OnMovieClickListener{
 
@@ -207,14 +208,14 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                                Toast.makeText(mActivity, "Error while taking data!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mActivity, toast_error, Toast.LENGTH_SHORT).show();
                             }
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(mActivity , "Error while taking data !!" , Toast.LENGTH_LONG).show();
+                            Toast.makeText(mActivity, toast_error, Toast.LENGTH_LONG).show();
                             error.printStackTrace();
                         }
                     });
@@ -276,14 +277,14 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                                Toast.makeText(mActivity, "Error while taking data!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mActivity, toast_error, Toast.LENGTH_SHORT).show();
                             }
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(mActivity , "Error while taking data !!" , Toast.LENGTH_LONG).show();
+                            Toast.makeText(mActivity, toast_error, Toast.LENGTH_LONG).show();
                             error.printStackTrace();
                         }
                     });

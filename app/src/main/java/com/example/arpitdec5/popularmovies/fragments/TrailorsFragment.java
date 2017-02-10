@@ -35,6 +35,10 @@ public class TrailorsFragment extends Fragment {
     ImageView imageView;
     TextView textView;
 
+    String no_trailor = getString(R.string.no_trailor);
+    String url = "https://www.youtube.com/watch?v=";
+
+
     @BindView(R.id.list_trailor) RecyclerView listView;
 
     public TrailorsFragment() {
@@ -132,7 +136,7 @@ public class TrailorsFragment extends Fragment {
 
                     if(arrayList.size()>0) {
                         Toast.makeText(mActivity, "Fetching Trailor..", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + arrayList.get(position)));
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url + arrayList.get(position)));
                         startActivity(intent);
                     }
                     else

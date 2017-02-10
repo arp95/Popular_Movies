@@ -33,6 +33,7 @@ public class ReviewsFragment extends Fragment {
     ReviewHandler reviewHandler;
     ArrayList<String> reviews ;
     TextView textView;
+    String no_review = getString(R.string.no_review);
 
     @BindView(R.id.review_list_review) RecyclerView listView;
 
@@ -136,7 +137,7 @@ public class ReviewsFragment extends Fragment {
                         startActivity(intent);
                     }
                     else
-                        Toast.makeText(mActivity , "Sorry..No Reviews available" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mActivity, no_review, Toast.LENGTH_SHORT).show();
                 }
             });
         }
