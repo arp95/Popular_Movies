@@ -45,30 +45,29 @@ import butterknife.Unbinder;
  */
 public class MovieDescriptionFragment extends Fragment {
 
-    Activity mActivity;
-    ArrayList<String> trailer ;
-    ArrayList<String> review;
+    private Activity mActivity;
+
+    private ArrayList<String> trailer ;
+    private ArrayList<String> review;
+    private String movie_id = "";
+    private String movie_title = "";
+    private String movie_image = "";
+    private String movie_release = "";
+    private String movie_vote = "";
+    private String movie_overview = "";
+    private String url4 = "https://www.youtube.com/watch?v=";
+    private String url3 = "/videos?api_key=e9bedc7d4abd75b8283a9734f5bcb6d2";
+    private String url2 = "/reviews?api_key=e9bedc7d4abd75b8283a9734f5bcb6d2";
+    private String url1 = "http://api.themoviedb.org/3/movie/";
+    private String movie_review = null;
+    private String toast_error = getString(R.string.error);
+    private String no_review = getString(R.string.no_review);
+    private String no_trailor = getString(R.string.no_trailor);
 
     private Unbinder unbinder;
-
-    String movie_id = "";
-    String movie_title = "";
-    String movie_image = "";
-    String movie_release = "";
-    String movie_vote = "";
-    String movie_overview = "";
-    String url4 = "https://www.youtube.com/watch?v=";
-    String url3 = "/videos?api_key=e9bedc7d4abd75b8283a9734f5bcb6d2";
-    String url2 = "/reviews?api_key=e9bedc7d4abd75b8283a9734f5bcb6d2";
-    String url1 = "http://api.themoviedb.org/3/movie/";
-    String movie_review = null;
-    String toast_error = getString(R.string.error);
-    String no_review = getString(R.string.no_review);
-    String no_trailor = getString(R.string.no_trailor);
-    
-    TrailorHandler trailorHandler;
-    ReviewHandler reviewHandler;
-    MovieDescriptionHandler movieDescriptionHandler;
+    private TrailorHandler trailorHandler;
+    private ReviewHandler reviewHandler;
+    private MovieDescriptionHandler movieDescriptionHandler;
 
     @Override
     public void onAttach(Activity activity) {

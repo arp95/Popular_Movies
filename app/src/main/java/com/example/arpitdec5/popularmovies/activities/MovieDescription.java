@@ -17,10 +17,11 @@ import butterknife.ButterKnife;
 
 public class MovieDescription extends AppCompatActivity {
 
-    TrailorHandler trailorHandler;
-    MovieDescriptionHandler movieDescriptionHandler;
-    String movie_title = null;
-    String url = "https://www.youtube.com/watch?v=";
+    private TrailorHandler trailorHandler;
+    private MovieDescriptionHandler movieDescriptionHandler;
+
+    private String movie_title = null;
+    private String url = "https://www.youtube.com/watch?v=";
 
     @BindView(R.id.toolbar) Toolbar toolbar;
 

@@ -46,21 +46,21 @@ public class MainActivityFragment extends Fragment implements SearchView.OnQuery
     private String searchText = "";
     private SearchView searchView;
     private NavigationView navigationView;
+    private String[] images;
+    private ArrayList<String> arrayList;
+    private ArrayList<String> titeList;
+    private String url1 = "https://api.themoviedb.org/3/movie/";
+    private String url2 = "?api_key=e9bedc7d4abd75b8283a9734f5bcb6d2";
+    private String url3 = "http://image.tmdb.org/t/p/w185/";
+    private String toast_error = getString(R.string.error);
 
-    Activity mActivity;
-    MovieDescriptionHandler movieDescriptionHandler;
-    RecyclerView grid;
-    String[] images;
-    ArrayList<String> arrayList;
-    ArrayList<String> titeList;
-    RequestQueue requestQueue;
-    JsonObjectRequest jsonObjectRequest1;
-    JsonObjectRequest jsonObjectRequest2;
+    private Activity mActivity;
+    private MovieDescriptionHandler movieDescriptionHandler;
+    private RecyclerView grid;
 
-    String url1 = "https://api.themoviedb.org/3/movie/";
-    String url2 = "?api_key=e9bedc7d4abd75b8283a9734f5bcb6d2";
-    String url3 = "http://image.tmdb.org/t/p/w185/";
-    String toast_error = getString(R.string.error);
+    private RequestQueue requestQueue;
+    private JsonObjectRequest jsonObjectRequest1;
+    private JsonObjectRequest jsonObjectRequest2;
 
     public interface OnMovieClickListener{
 

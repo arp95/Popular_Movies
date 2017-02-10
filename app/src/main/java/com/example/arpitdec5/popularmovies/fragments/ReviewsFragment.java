@@ -29,11 +29,12 @@ import butterknife.ButterKnife;
  */
 public class ReviewsFragment extends Fragment {
 
-    Activity mActivity;
-    ReviewHandler reviewHandler;
-    ArrayList<String> reviews ;
-    TextView textView;
-    String no_review = getString(R.string.no_review);
+    private Activity mActivity;
+    private ReviewHandler reviewHandler;
+
+    private ArrayList<String> reviews ;
+    private TextView textView;
+    private String no_review = getString(R.string.no_review);
 
     @BindView(R.id.review_list_review) RecyclerView listView;
 

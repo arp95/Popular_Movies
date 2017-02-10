@@ -29,15 +29,16 @@ import butterknife.ButterKnife;
  */
 public class TrailorsFragment extends Fragment {
 
-    Activity mActivity;
-    ArrayList<String> trailors;
-    TrailorHandler trailorHandler;
-    ImageView imageView;
-    TextView textView;
+    private Activity mActivity;
 
-    String no_trailor = getString(R.string.no_trailor);
-    String url = "https://www.youtube.com/watch?v=";
+    private TrailorHandler trailorHandler;
 
+    private ImageView imageView;
+    private TextView textView;
+
+    private ArrayList<String> trailors;
+    private String no_trailor = getString(R.string.no_trailor);
+    private String url = "https://www.youtube.com/watch?v=";
 
     @BindView(R.id.list_trailor) RecyclerView listView;
 
