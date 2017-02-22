@@ -9,8 +9,8 @@ and read user reviews.
 
 ### Screenshots
 
-<img src="docs/screenshots/pic1.png" height="480" width="270">
-<img src="docs/screenshots/pic2.png" height="480" width="270">
+<img src="docs/screenshots/pic1.png.png" height="480" width="270">
+<img src="docs/screenshots/pic2.png.png" height="480" width="270">
 
 
 ### API Used
