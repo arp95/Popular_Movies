@@ -7,6 +7,12 @@ An Android App optimized for tablets, which help users discover popular and top-
 and read user reviews.
 
 
+### Screenshots
+
+<img src="docs/screenshots/pic1.png" height="480" width="270">
+<img src="docs/screenshots/pic2.png" height="480" width="270">
+
+
 ### API Used
 
 The movies are fetched from "themoviedb.org" api from where the user gets the popular and the top-rated movies
