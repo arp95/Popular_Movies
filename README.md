@@ -1,4 +1,4 @@
-# Popular_Movies
+# Popular Movies Android App ( Udacity Android Nanodegree Project )
 
 
 ### Introduction
